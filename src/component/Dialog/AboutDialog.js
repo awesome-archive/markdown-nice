@@ -1,16 +1,21 @@
-import React, { Component } from "react";
-import { observer, inject } from "mobx-react";
-import { Modal } from "antd";
+import React, {Component} from "react";
+import {observer, inject} from "mobx-react";
+import {Modal, Button} from "antd";
 
 @inject("dialog")
 @observer
 class AboutDialog extends Component {
-  handleOk = e => {
+  handleOk = () => {
     this.props.dialog.setAboutOpen(false);
   };
 
-  handleCancel = e => {
+  handleCancel = () => {
     this.props.dialog.setAboutOpen(false);
+  };
+
+  handleVersion = () => {
+    this.props.dialog.setAboutOpen(false);
+    this.props.dialog.setVersionOpen(true);
   };
 
   render() {
@@ -22,49 +27,72 @@ class AboutDialog extends Component {
         visible={this.props.dialog.isAboutOpen}
         onOk={this.handleOk}
         onCancel={this.handleCancel}
-        footer={null}
+        footer={[
+          <Button key="version" onClick={this.handleVersion}>
+            更新记录
+          </Button>,
+          <Button key="submit" type="primary" onClick={this.handleOk}>
+            确认
+          </Button>,
+        ]}
         bodyStyle={{
-          paddingTop: "5px"
+          paddingTop: "5px",
         }}
       >
-        <h3 style={style.headerMargin}>Markdown Nice</h3>
-        <p style={style.lineHeight}>一款 Markdown 微信排版工具；</p>
-        <p style={style.lineHeight}>支持图片上传；</p>
-        <p style={style.lineHeight}>支持代码样式；</p>
-        <p style={style.lineHeight}>支持自定义样式；</p>
-        <p style={style.lineHeight}>支持数学公式。</p>
+        <h3 style={style.headerMargin}>
+          Markdown Nice
+          <a
+            id="nice-about-dialog-star"
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://github.com/mdnice/markdown-nice"
+            style={style.noBorder}
+          >
+            <img alt="" style={style.img} src="https://badgen.net/github/stars/mdnice/markdown-nice" />
+          </a>
+        </h3>
+
+        <p style={style.lineHeight}>支持自定义样式的 Markdown 编辑器；</p>
+        <p style={style.lineHeight}>支持微信公众号、知乎和稀土掘金；</p>
         <h3 style={style.headerMargin}>我们</h3>
         <p style={style.lineHeight}>
           如果你喜欢我们的工具，欢迎关注
           <a
+            id="nice-about-dialog-github"
             rel="noopener noreferrer"
             target="_blank"
-            href="https://github.com/zhning12/markdown-nice"
+            href="https://github.com/mdnice/markdown-nice"
           >
-          &nbsp;GitHub&nbsp;
+            &nbsp;GitHub&nbsp;
           </a>
-           和新项目
+          、
           <a
+            id="nice-about-dialog-gitee"
+            rel="noopener noreferrer"
+            target="_blank"
+            href="https://gitee.com/zhning12/markdown-nice"
+          >
+            &nbsp;Gitee&nbsp;
+          </a>
+          和新项目
+          <a
+            id="nice-about-dialog-resume"
+            style={style.a}
             rel="noopener noreferrer"
             target="_blank"
             href="https://github.com/guanpengchn/markdown-resume"
           >
             &nbsp;Markdown 简历
           </a>
-          ，愿意
-          <strong>微信打赏</strong>就更好啦。
+          ，同时我们也组建了「
+          <strong style={style.strong}>微信群</strong>
+          」，右下角关注公众号回复「排版」拉你入群，愿意
+          <strong style={style.strong}>微信打赏</strong>
+          就更好啦。
         </p>
-        <div style={{display: "flex",}}>
-        <img
-          alt="图片描述"
-          style={style.imgWidth}
-          src="https://i.loli.net/2019/03/31/5ca08c7d19872.png"
-        />
-        {/* <img
-          alt="图片描述"
-          style={style.imgWidth}
-          src="https://i.loli.net/2019/03/31/5ca095dfa4714.png"
-        /> */}
+        <div style={{display: "flex", alignItems: "center"}}>
+          <img alt="图片描述" style={style.leftImgWidth} src="https://my-wechat.mdnice.com/bonus.png" />
+          <img alt="图片描述" style={style.rightImgWidth} src="https://my-wechat.mdnice.com/wechat.jpg" />
         </div>
       </Modal>
     );
@@ -72,18 +100,33 @@ class AboutDialog extends Component {
 }
 
 const style = {
-  imgWidth: {
-    width: "50%",
-    height: "100%"
+  leftImgWidth: {
+    width: "40%",
+    height: "100%",
+  },
+  rightImgWidth: {
+    width: "60%",
+    height: "100%",
   },
   headerMargin: {
     marginTop: "5px",
-    marginBottom: "5px"
+    marginBottom: "5px",
+    color: "black",
   },
   lineHeight: {
     lineHeight: "26px",
-    padding: 0
-  }
+    color: "black",
+    padding: 0,
+    margin: 0,
+  },
+  img: {
+    width: "70px",
+    marginLeft: "10px",
+    display: "inline-block",
+  },
+  noBorder: {
+    border: "none",
+  },
 };
 
 export default AboutDialog;

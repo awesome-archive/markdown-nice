@@ -1,11 +1,7 @@
-import normal from "./markdown/normal";
-import orange from "./markdown/orange";
 import custom from "./markdown/custom";
-import ink from "./markdown/ink";
-import purple from "./markdown/purple";
-import cyan from "./markdown/cyan";
+import normal from "./markdown/normal";
 
-import content from "./content";
+import content from "./content.md";
 
 import atomOneDark from "./code/atomOneDark";
 import atomOneLight from "./code/atomOneLight";
@@ -13,25 +9,33 @@ import github from "./code/github";
 import monokai from "./code/monokai";
 import vs2015 from "./code/vs2015";
 import xcode from "./code/xcode";
-import basic from "./basic"
+
+import macAtomOneDark from "./macCode/macAtomOneDark";
+import macAtomOneLight from "./macCode/macAtomOneLight";
+import macGithub from "./macCode/macGithub";
+import macMonokai from "./macCode/macMonokai";
+import macVs2015 from "./macCode/macVs2015";
+import macXcode from "./macCode/macXcode";
+
+import basic from "./basic";
 
 export default {
   basic,
-  style: {
-    normal,
-    orange,
-    custom,
-    ink,
-    purple,
-    cyan
-  },
+  normal,
+  custom,
   code: {
     atomOneDark,
     atomOneLight,
     github,
     monokai,
     vs2015,
-    xcode
+    xcode,
+    macAtomOneDark,
+    macAtomOneLight,
+    macGithub,
+    macMonokai,
+    macVs2015,
+    macXcode,
   },
-  content
+  content,
 };
